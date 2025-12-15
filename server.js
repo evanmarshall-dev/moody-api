@@ -10,7 +10,6 @@ const authRouter = require('./controllers/auth');
 const usersRouter = require('./controllers/users');
 
 // Connect to MongoDB
-const readRouter = require("./controllers/ReadController.js");
 mongoose.connect(process.env.MONGODB_URI);
 
 mongoose.connection.on("connected", () => {
@@ -32,7 +31,7 @@ app.use('/test-jwt', testJwtRouter);
 app.use('/auth', authRouter);
 app.use('/users', usersRouter);
 app.use("/moods", createController);
-app.use('/moods', readRouter);
+
 
 // Start the server
 app.listen(3000, () => {
