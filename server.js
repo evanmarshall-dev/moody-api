@@ -7,7 +7,7 @@ const cors = require('cors');
 const logger = require('morgan');
 const testJwtRouter = require('./controllers/test-jwt');
 const authRouter = require('./controllers/auth');
-const moodsRouter = require('./controllers/moods.js');
+const moodsRouter = require('./controllers/MoodsController.js');
 const usersRouter = require('./controllers/users');
 
 // Connect to MongoDB
