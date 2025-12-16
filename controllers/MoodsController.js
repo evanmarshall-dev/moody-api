@@ -27,6 +27,27 @@ router.post("/", async (req, res) => {
   }
 });
 
+
+
+// DELETE /moods/:id - Delete a mood entry
+router.delete("/:id", async (req, res) => {
+  try {
+    const mood = await Mood.findOneAndDelete({
+      _id: req.params.id,
+      author: req.user._id, // Ensures the user can only delete their own moods
+    });
+
+    if (!mood) {
+      return res.status(404).json({ error: "Mood entry not found or unauthorized" });
+    }
+
+    res.status(200).json({ message: "Mood entry deleted successfully" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Failed to delete mood entry" });
+  }
+});
+
 //GET /moods - display all moods logs
 router.get("/", async (req, res) => {
   try {
